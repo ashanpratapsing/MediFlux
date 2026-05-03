@@ -1,0 +1,31 @@
+{
+  "name": "mediflux-monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.12",
+    "tailwindcss": "^4.2.4",
+    "turbo": "^1.13.0",
+    "@playwright/test": "^1.42.1",
+    "vite-tsconfig-paths": "^5.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*",
+    "store/*",
+    "mocks/*"
+  ],
+  "msw": {
+    "workerDirectory": [
+      "apps\\web\\public"
+    ]
+  }
+}

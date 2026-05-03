@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0A0A0B;
+  --color-surface: #141416;
+  --color-surface-hover: #1C1C1F;
+  --color-text: #F2F2F2;
+  --color-muted: #8B8D98;
+  --color-primary: #5E6AD2;
+  --color-success: #2FB380;
+  --color-alert: #E25858;
+  --color-border: rgba(255, 255, 255, 0.06);
+  
+  --font-sans: "Inter", system-ui, sans-serif;
+  
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px 0 rgba(94, 106, 210, 0.15);
+  --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  
+  --animate-fade-in: fadeIn 0.4s ease-out forwards;
+  --animate-pulse-slow: pulseSlow 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@theme {
+  --animate-scale-in: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+@keyframes pulseSlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+
+@layer base {
+  body {
+    @apply bg-background text-text antialiased selection:bg-primary/30 selection:text-white;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  input, select, textarea {
+    @apply focus:ring-4 focus:ring-primary/10 transition-all duration-300;
+  }
+}
+
+
+@layer utilities {
+  .surface-hover {
+    @apply bg-surface-hover;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-white/20;
+  }
+
+  .skeleton {
+    @apply bg-surface-hover animate-pulse-slow rounded;
+  }
+}

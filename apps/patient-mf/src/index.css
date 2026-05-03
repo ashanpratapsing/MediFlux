@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0A0A0B;
+  --color-surface: #141416;
+  --color-surface-hover: #1C1C1F;
+  --color-text: #F2F2F2;
+  --color-muted: #8B8D98;
+  --color-primary: #5E6AD2;
+  --color-success: #2FB380;
+  --color-alert: #E25858;
+  --color-border: rgba(255, 255, 255, 0.06);
+  
+  --font-sans: "Inter", system-ui, sans-serif;
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text antialiased;
+  }
+}
+
+@layer utilities {
+  .skeleton {
+    @apply bg-surface-hover animate-pulse rounded;
+  }
+}

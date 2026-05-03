@@ -1,0 +1,11 @@
+{
+  "name": "@mediflux/api",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "axios": "^1.15.2"
+  }
+}
