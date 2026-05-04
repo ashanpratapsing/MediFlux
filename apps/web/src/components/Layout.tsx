@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Users, BarChart3, Bell, Settings, LogOut, Activity, Search, ChevronDown } from 'lucide-react';
+import { LayoutDashboard, Users, BarChart3, Bell, LogOut, Activity, Search, ChevronDown } from 'lucide-react';
 import { useAuthStore } from '@mediflux/auth';
 import { wsClient } from '@mediflux/websocket';
 import { useNotificationStore } from '../store/notifications';
@@ -28,7 +28,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         // Simulation: Patient status update
         const randomIdx = Math.floor(Math.random() * patients.length);
         const patient = patients[randomIdx];
-        const statuses: Array<'Stable' | 'Critical' | 'Observation'> = ['Stable', 'Critical', 'Observation'];
+        const statuses: Array<'Stable' | 'Critical' | 'Under Observation'> = ['Stable', 'Critical', 'Under Observation'];
         const newStatus = statuses[Math.floor(Math.random() * statuses.length)];
         
         if (newStatus !== patient.status) {
@@ -54,10 +54,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     }, 15000); // Trigger every 15 seconds as requested
 
     const unsubscribe = wsClient.on('notification', (data) => {
+      const payload = data as { title: string; message: string; type?: string };
       addNotification({
-        title: data.title,
-        message: data.message,
-        type: data.type === 'CRITICAL_ALERT' ? 'critical' : 'info'
+        title: payload.title,
+        message: payload.message,
+        type: payload.type === 'CRITICAL_ALERT' ? 'critical' : 'info'
       });
     });
     

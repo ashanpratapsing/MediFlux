@@ -8,8 +8,8 @@ import {
   Badge, Button, Card, CardContent, Modal 
 } from '@mediflux/ui';
 import { 
-  Search, SlidersHorizontal, List, LayoutGrid, 
-  Users, Plus, Trash2, Edit2, AlertTriangle, X, ChevronDown
+  Search, List, LayoutGrid, 
+  Users, Plus, Trash2, Edit2, AlertTriangle, ChevronDown
 } from 'lucide-react';
 
 

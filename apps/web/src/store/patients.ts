@@ -13,7 +13,7 @@ export const usePatientStore = create<PatientState>((set, get) => ({
   patients: [
     { id: 1, name: 'James Wilson', age: 45, condition: 'Hypertension', status: 'Stable', lastVisit: '2024-05-01' },
     { id: 2, name: 'Sarah Chen', age: 32, condition: 'Type 2 Diabetes', status: 'Stable', lastVisit: '2024-04-28' },
-    { id: 3, name: 'Michael Brown', age: 68, condition: 'Post-Op Recovery', status: 'Observation', lastVisit: '2024-05-02' },
+    { id: 3, name: 'Michael Brown', age: 68, condition: 'Post-Op Recovery', status: 'Under Observation', lastVisit: '2024-05-02' },
     { id: 4, name: 'Emily Davis', age: 24, condition: 'Acute Asthma', status: 'Critical', lastVisit: '2024-05-02' },
     { id: 5, name: 'Robert Miller', age: 54, condition: 'Cardiac Arrhythmia', status: 'Stable', lastVisit: '2024-04-15' },
     { id: 6, name: 'Linda Garcia', age: 41, condition: 'Chronic Migraine', status: 'Stable', lastVisit: '2024-04-30' },

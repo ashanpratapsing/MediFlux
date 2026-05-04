@@ -61,7 +61,7 @@ router.post("/refresh", (req, res) => {
     });
 
     res.json({ accessToken: newAccessToken });
-  } catch (err) {
+  } catch (_err) {
     res.sendStatus(403);
   }
 });
