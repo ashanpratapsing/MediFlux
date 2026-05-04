@@ -17,7 +17,7 @@ export default function AnalyticsDashboard() {
     return (
       <div className="p-8 bg-alert/10 border border-alert/20 rounded-2xl text-alert">
         <h2 className="text-lg font-bold">Analytics Error</h2>
-        <p className="text-sm">{(error as any)?.message || 'Failed to fetch analytics data'}</p>
+        <p className="text-sm">{(error instanceof Error) ? error.message : 'Failed to fetch analytics data'}</p>
         <button 
           onClick={() => window.location.reload()}
           className="mt-4 px-4 py-2 bg-alert text-white rounded-lg text-sm"
