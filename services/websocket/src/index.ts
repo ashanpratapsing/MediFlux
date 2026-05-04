@@ -2,7 +2,6 @@ type EventHandler = (data: unknown) => void;
 
 class MockWebSocket {
   private listeners: Record<string, EventHandler[]> = {};
-  private timer: NodeJS.Timeout | null = null;
 
   constructor() {
     this.startSimulation();
@@ -25,7 +24,7 @@ class MockWebSocket {
   }
 
   private startSimulation() {
-    this.timer = setInterval(() => {
+    setInterval(() => {
       const types = ['CRITICAL_ALERT', 'NEW_PATIENT'];
       const type = types[Math.floor(Math.random() * types.length)];
       

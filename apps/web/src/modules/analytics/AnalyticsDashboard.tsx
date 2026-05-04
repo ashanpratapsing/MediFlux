@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, type ReactNode } from 'react';
 import { usePatientStore } from '../../store/patients';
 import { Card, CardContent, CardHeader, CardTitle } from '@mediflux/ui';
 import { 
@@ -6,6 +6,7 @@ import {
   ResponsiveContainer, BarChart, Bar, CartesianGrid, 
   Cell, PieChart, Pie
 } from 'recharts';
+import { BarChart3 } from 'lucide-react';
 
 export default function AnalyticsDashboard() {
   const [timeRange, setTimeRange] = React.useState('30D');
@@ -64,7 +65,7 @@ export default function AnalyticsDashboard() {
     return (
       <div className="flex flex-col items-center justify-center py-40 text-center animate-fade-in">
         <div className="w-20 h-20 bg-surface/50 border border-dashed border-border rounded-full flex items-center justify-center text-muted/30 mb-6">
-          <BarChart size={32} />
+          <BarChart3 size={32} />
         </div>
         <h2 className="text-xl font-bold text-text">No analytics data available</h2>
         <p className="text-sm text-muted mt-2 max-w-sm">
@@ -198,7 +199,7 @@ export default function AnalyticsDashboard() {
                   radius={[8, 8, 0, 0]} 
                   barSize={45}
                 >
-                  {conditionStats.map((entry, index) => (
+                  {conditionStats.map((_entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Bar>
@@ -228,7 +229,7 @@ export default function AnalyticsDashboard() {
                     animationBegin={0}
                     animationDuration={1500}
                   >
-                    {statusStats.map((entry, index) => (
+                    {statusStats.map((_entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="rgba(0,0,0,0.2)" strokeWidth={2} />
                     ))}
                   </Pie>
