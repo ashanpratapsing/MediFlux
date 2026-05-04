@@ -1,4 +1,4 @@
-import React, { useMemo, type ReactNode } from 'react';
+import React, { useMemo } from 'react';
 import { usePatientStore } from '../../store/patients';
 import { Card, CardContent, CardHeader, CardTitle } from '@mediflux/ui';
 import { 
