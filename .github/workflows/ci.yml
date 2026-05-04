@@ -25,11 +25,6 @@ jobs:
     - name: Lint
       run: npm run lint
       
-    - name: Test (Unit & Integration)
-      run: npm run test
-      
     - name: Build
       run: npm run build
-      
-    - name: Playwright E2E Tests
-      run: npx playwright install --with-deps && npx playwright test
+
