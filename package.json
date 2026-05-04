@@ -8,12 +8,13 @@
     "test": "turbo run test"
   },
   "devDependencies": {
+    "@playwright/test": "^1.42.1",
     "@tailwindcss/postcss": "^4.2.4",
+    "@types/recharts": "^1.8.29",
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.12",
     "tailwindcss": "^4.2.4",
     "turbo": "^1.13.0",
-    "@playwright/test": "^1.42.1",
     "vite-tsconfig-paths": "^5.0.0"
   },
   "workspaces": [
@@ -27,5 +28,8 @@
     "workerDirectory": [
       "apps\\web\\public"
     ]
+  },
+  "dependencies": {
+    "recharts": "^3.8.1"
   }
 }
