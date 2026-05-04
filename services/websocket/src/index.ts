@@ -1,4 +1,4 @@
-type EventHandler = (data: any) => void;
+type EventHandler = (data: unknown) => void;
 
 class MockWebSocket {
   private listeners: Record<string, EventHandler[]> = {};
@@ -18,7 +18,7 @@ class MockWebSocket {
     };
   }
 
-  private emit(event: string, data: any) {
+  private emit(event: string, data: unknown) {
     if (this.listeners[event]) {
       this.listeners[event].forEach(handler => handler(data));
     }

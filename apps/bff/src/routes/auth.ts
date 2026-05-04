@@ -38,13 +38,18 @@ router.post("/login", async (req, res) => {
   }
 });
 
+interface JWTPayload {
+  uid: string;
+  email?: string;
+}
+
 router.post("/refresh", (req, res) => {
   const token = req.cookies.refreshToken;
 
   if (!token) return res.sendStatus(401);
 
   try {
-    const decoded = jwt.verify(token, REFRESH_SECRET) as any;
+    const decoded = jwt.verify(token, REFRESH_SECRET) as JWTPayload;
     
     const user = {
       uid: decoded.uid,

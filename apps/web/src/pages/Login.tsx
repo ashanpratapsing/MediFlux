@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuthStore } from '@mediflux/auth';
 import type { User, Role } from '@mediflux/types';
+import type { AuthError } from 'firebase/auth';
 
 import { useNavigate } from 'react-router-dom';
 import { Activity, Eye, EyeOff } from 'lucide-react';
@@ -43,7 +44,8 @@ export const Login = () => {
       localStorage.setItem('mediflux_user', JSON.stringify(user));
       navigate('/');
       return;
-    } catch (err: any) {
+    } catch (error: unknown) {
+      const err = error as AuthError;
       console.warn("Firebase Auth failed, checking mock fallback...", err.code);
       
       // 2. Fallback to Mock if it's a test account
@@ -98,7 +100,8 @@ export const Login = () => {
       localStorage.setItem('mediflux_user', JSON.stringify(user));
       setUser(user);
       navigate('/');
-    } catch (err: any) {
+    } catch (error: unknown) {
+      const err = error as AuthError;
       console.error("Google Login Error:", err);
       if (err.code === 'auth/popup-closed-by-user') {
         setError('Sign-in cancelled. Please complete the Google popup to continue.');

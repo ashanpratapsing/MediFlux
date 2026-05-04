@@ -99,6 +99,8 @@ export default function PatientList() {
                            p.condition.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            p.id.toString().includes(searchTerm);
       const matchesStatus = statusFilter === 'All' || p.status === statusFilter;
+      // Note: No change needed here if statusFilter matches the select values, 
+      // but I will ensure the select options are also updated.
       return matchesSearch && matchesStatus;
     });
   }, [patients, searchTerm, statusFilter]);
@@ -156,7 +158,7 @@ export default function PatientList() {
           <Badge variant={
             patient.status === 'Stable' ? 'success' :
             patient.status === 'Critical' ? 'alert' :
-            patient.status === 'Observation' ? 'default' : 'outline'
+            patient.status === 'Under Observation' ? 'default' : 'outline'
           }>
             {patient.status}
           </Badge>
@@ -209,7 +211,7 @@ export default function PatientList() {
             <option value="All">All Statuses</option>
             <option value="Stable">Stable Only</option>
             <option value="Critical">Critical Alerts</option>
-            <option value="Observation">Observation</option>
+            <option value="Under Observation">Observation</option>
             <option value="Discharged">Discharged</option>
           </select>
 
@@ -285,7 +287,7 @@ export default function PatientList() {
                       <Badge variant={
                         patient.status === 'Stable' ? 'success' :
                         patient.status === 'Critical' ? 'alert' :
-                        patient.status === 'Observation' ? 'default' : 'outline'
+                        patient.status === 'Under Observation' ? 'default' : 'outline'
                       }>
                         {patient.status}
                       </Badge>
@@ -357,11 +359,11 @@ export default function PatientList() {
               <select 
                 className="w-full bg-black/20 border border-white/5 rounded-2xl px-5 py-4 text-sm font-bold text-white focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all cursor-pointer appearance-none"
                 value={formData.status}
-                onChange={e => setFormData({...formData, status: e.target.value as any})}
+                onChange={e => setFormData({...formData, status: e.target.value as Patient['status']})}
               >
                 <option value="Stable">Stable Recovery</option>
                 <option value="Critical">Critical Alert</option>
-                <option value="Observation">Under Observation</option>
+                <option value="Under Observation">Under Observation</option>
                 <option value="Discharged">Ready for Discharge</option>
               </select>
               <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-muted group-hover:text-primary transition-colors">

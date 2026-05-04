@@ -4,7 +4,16 @@ import { useNotificationStore } from '../store/notifications';
 import { Activity, Users, AlertCircle, TrendingUp, TrendingDown, Clock, CheckCircle2, LayoutGrid } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@mediflux/ui';
 
-const KpiCard = ({ title, value, icon: Icon, trend, trendValue, color }: any) => (
+interface KpiCardProps {
+  title: string;
+  value: string | number;
+  icon: React.ElementType;
+  trend: 'up' | 'down';
+  trendValue: string;
+  color?: string;
+}
+
+const KpiCard = ({ title, value, icon: Icon, trend, trendValue, color }: KpiCardProps) => (
   <Card className="flex flex-col justify-between h-full group relative overflow-hidden transition-all duration-300 hover:shadow-premium border-border/50 bg-surface/40 backdrop-blur-sm">
     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
       <CardTitle className="text-[10px] font-bold text-muted uppercase tracking-widest">{title}</CardTitle>
@@ -32,7 +41,7 @@ export const Dashboard = () => {
     const total = patients.length;
     const critical = patients.filter(p => p.status === 'Critical').length;
     const stable = patients.filter(p => p.status === 'Stable').length;
-    const observation = patients.filter(p => p.status === 'Observation').length;
+    const observation = patients.filter(p => p.status === 'Under Observation').length;
     const discharged = patients.filter(p => p.status === 'Discharged').length;
     const active = total - discharged;
 

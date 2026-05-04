@@ -25,7 +25,7 @@ export default function PatientList() {
     return (
       <div className="p-8 bg-alert/10 border border-alert/20 rounded-2xl text-alert flex flex-col items-center text-center">
         <h2 className="text-lg font-bold">Connection Interrupted</h2>
-        <p className="text-sm mt-2">{(error as any)?.message || 'Failed to fetch the patient registry.'}</p>
+        <p className="text-sm mt-2">{(error instanceof Error) ? error.message : 'Failed to fetch the patient registry.'}</p>
         <Button 
           variant="danger"
           size="sm"
@@ -102,7 +102,7 @@ export default function PatientList() {
           <Badge variant={
             patient.status === 'Stable' ? 'success' :
             patient.status === 'Critical' ? 'alert' :
-            patient.status === 'Observation' ? 'default' : 'outline'
+            patient.status === 'Under Observation' ? 'default' : 'outline'
           }>
             {patient.status}
           </Badge>
@@ -214,7 +214,7 @@ export default function PatientList() {
                       <Badge variant={
                         patient.status === 'Stable' ? 'success' :
                         patient.status === 'Critical' ? 'alert' :
-                        patient.status === 'Observation' ? 'default' : 'outline'
+                        patient.status === 'Under Observation' ? 'default' : 'outline'
                       }>
                         {patient.status}
                       </Badge>

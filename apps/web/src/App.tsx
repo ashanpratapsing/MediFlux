@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import type { User as FirebaseUser } from 'firebase/auth';
 import { useAuthStore } from '@mediflux/auth';
 import { ErrorBoundary } from '@mediflux/ui';
 import type { User as MediFluxUser } from '@mediflux/types';
@@ -45,7 +46,7 @@ function App() {
     // Try Firebase auth state for real Google login sessions
     let unsubscribeFn: (() => void) | undefined;
     import('@mediflux/firebase').then(({ auth }) => {
-      unsubscribeFn = auth.onAuthStateChanged((firebaseUser: any) => {
+      unsubscribeFn = auth.onAuthStateChanged((firebaseUser: FirebaseUser | null) => {
         if (firebaseUser) {
           const u: MediFluxUser = {
             uid: firebaseUser.uid,
